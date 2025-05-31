@@ -1,10 +1,16 @@
+version: '3.8' # É uma boa prática definir a versão do compose
+
 services:
-    mysql:
-      image: 'mysql:latest'
-      environment:
-        - 'MYSQL_DATABASE=mydatabase'
-        - 'MYSQL_PASSWORD=secret'
-        - 'MYSQL_ROOT_PASSWORD=verysecret'
-        - 'MYSQL_USER=myuser'
-      ports:
-        - '3306'
+  mysql:
+    image: mysql:8.0 # Especificar uma versão é melhor que 'latest' para consistência
+    container_name: agregador_mysql # Nomeia o container para facilitar a referência
+    ports:
+      - "3306:3306" # Mapeia a porta 3306 do seu PC para a porta 3306 do container
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'db_investimentos' # Nome do banco de dados a ser criado
+      MYSQL_USER: 'springuser'          # Nome do usuário a ser criado
+      MYSQL_PASSWORD: 'ThePassword'       # Senha para o MYSQL_USER
+      # volumes:
+      # - ./meus_dados_mysql:/var/lib/mysql  # Opcional: para persistir os dados do banco
+      # - ./conf.d:/etc/mysql/conf.d:ro     # Comente ou remova se não tiver arquivos de config personalizados
