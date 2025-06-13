@@ -15,10 +15,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID userId;
 
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "password")
@@ -32,14 +32,6 @@ public class User {
 
     public User() {
     }
-// gemini pediu para colocar:
-
-//    public User(String username, String email, String password) {
-//        this.username = username;
-//        this.email = email;
-//        this.password = password;
-//    }
-
 
     public User(UUID userId, String username, String email, String password,
                 Instant creationTimestamp, Instant updateTimestamp) {
